@@ -3,8 +3,11 @@ package io.datajek.springdata.tennisplayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -12,6 +15,24 @@ import java.util.List;
 public class PlayerDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    private static final class PlayerMapper implements RowMapper<Player> {
+        @Override
+        public Player mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+            Player player = new Player();
+            player.setId(resultSet.getInt("id"));
+            player.setName(resultSet.getString("name"));
+            player.setNationality(resultSet.getString("nationality"));
+            player.setBirthDate(resultSet.getTime("birth_date"));
+            player.setTitles(resultSet.getInt("titles"));
+            return player;
+        }
+    }
+
+    public List<Player> getPlayerByNationality(String nationality) {
+        String sql = "SELECT * FROM PLAYER WHERE NATIONALITY = ?";
+        return jdbcTemplate.query(sql, new PlayerMapper(), new Object[] {nationality});
+    }
 
     public List<Player> getAllPlayers() {
         String sql = "SELECT * FROM PLAYER";
