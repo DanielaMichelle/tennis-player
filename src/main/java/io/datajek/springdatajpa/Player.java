@@ -13,7 +13,6 @@ public class Player{
     private String name;
     // @Column(name="nationality")  // only use it if the column name is diferent
     private String nationality;
-    @Column(name="dateBirth")
     private Date birthDate;
     private int titles;
 
