@@ -8,6 +8,7 @@ public class TennisPlayerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TennisPlayerApplication.class, args);
+		System.out.println("hellooo");
 	}
 
 }
