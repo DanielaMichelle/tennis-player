@@ -39,6 +39,8 @@ public class TennisPlayerApplication implements CommandLineRunner {
 		logger.info("\n\n>> Player with id 3: {}\n", repo.getPlayerById(3));
 
 		repo.deletePlayerById(2);
+
+		logger.info("\n\n>> All Players Data: {}\n", repo.getAllPlayers());
 	}
 
 }
