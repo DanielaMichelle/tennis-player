@@ -25,15 +25,18 @@ public class TennisPlayerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// logger.info("All Players Data: {} ", dao.getAllPlayers());
-		// logger.info("Player with Id 3: {}", dao.getPlayerById(3));
+		// SELECT
+		logger.info("All Players Data: {} ", dao.getAllPlayers());
+		logger.info("Player with Id 3: {}", dao.getPlayerById(3));
 
+		// INSERT
 		logger.info("Inserting Player 4: {}", dao.insertPlayer(
 				new Player (4, "Thiem", "Austria",
 						new Date(System.currentTimeMillis()),
 						17 )));
 		logger.info("All Players Data: {}", dao.getAllPlayers());
 
+		// UPDATE
 		//Updating a player
 		logger.info("Updating Player with Id 4: {}",  dao.updatePlayer(
 				new Player(4, "Thiem", "Austria",
@@ -41,5 +44,9 @@ public class TennisPlayerApplication implements CommandLineRunner {
 
 		//View player by Id
 		logger.info("Players with Id 4: {}", dao.getPlayerById(4));
+
+		// DELETE
+		logger.info("Deleting Player with Id 2: {}", dao.deletePlayerById(2));
+		logger.info("All Players Data: {}", dao.getAllPlayers());
 	}
 }
